@@ -87,9 +87,3 @@ F:\C#\FinalProject_Web\FinalProject_Web\obj\Debug\net7.0\FinalProject_Web.pdb
 F:\C#\FinalProject_Web\FinalProject_Web\obj\Debug\net7.0\FinalProject_Web.genruntimeconfig.cache
 F:\C#\FinalProject_Web\FinalProject_Web\obj\Debug\net7.0\ref\FinalProject_Web.dll
 F:\C#\FinalProject_Web\FinalProject_Web\bin\Debug\net7.0\Newtonsoft.Json.dll
-F:\C#\FinalProject_Web\FinalProject_Web\bin\Debug\net7.0\variables.json
-F:\C#\FinalProject_Web\FinalProject_Web\bin\Debug\net7.0\variablesService.json
-F:\C#\FinalProject_Web\FinalProject_Web\bin\Debug\net7.0\variablesProject.json
-F:\C#\FinalProject_Web\FinalProject_Web\bin\Debug\net7.0\variablesBlog.json
-F:\C#\FinalProject_Web\FinalProject_Web\bin\Debug\net7.0\variablesContact.json
-F:\C#\FinalProject_Web\FinalProject_Web\bin\Debug\net7.0\variablesLink.json
