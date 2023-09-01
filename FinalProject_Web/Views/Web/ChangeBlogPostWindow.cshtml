@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Изменение поста";
+    Layout = "_Layout";
+}
+<link href="~/css/IndexStyle.css" rel="stylesheet" />
+@using FinalProject_Web.Model;
+@{
+    bool isAdmin;
+    if (ViewBag.IsAdmin != null && ViewBag.IsAdmin == true)
+    {
+        isAdmin = true;
+    }
+    else
+    {
+        isAdmin = false;
+    }
+}
+@model BlogModel
+@if (!isAdmin) // не забыть поменять
+{
+    <div class="form-container">
+
+        <div class="request-form center">
+            <div>
+                <form action="~/Web/ChangeBlogPost" method="post" enctype="multipart/form-data" id="uploadForm">
+                    <input type="file" name="imageFile" accept="image/*" id="uploadInput" />
+                    <input type="hidden" name="imageName" value="@Model.ImageName">
+                    <input type="hidden" name="id" value="@Model.Id">
+                    <label>Заголовок</label>
+                    <input maxlength="33" type="text" name="name" value="@Model.Name" /><br />
+                    <label>Краткое описание</label><br />
+                    <textarea maxlength="245" name="description" rows="3" class="description">@Model.Description</textarea><br /><br />
+                    <label>Содержимое поста</label><br />
+                    <textarea name="blogPost" rows="7" class="description">@Model.BlogPost</textarea><br /><br />
+                    <p><input type="submit" style="margin-top:20px" class="styled-button" value="Подтвердить изменения" /></p>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+

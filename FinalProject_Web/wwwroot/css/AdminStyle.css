@@ -1,0 +1,45 @@
+﻿.header-wrapper {
+    background-image: url('../img/cad-header-background-2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment:fixed;
+    padding: 0px 0 10px 0;
+    width: 100vw;
+    height: 100px;
+}
+
+.header-wrap-admin {
+    background-image: url('../img/cad-header-background-2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: fixed;
+    min-width: 200px;
+    height: 100vh;
+    display: flex;
+    justify-content: left;
+    align-items:center;
+}
+
+.a-menu {
+    list-style: none;
+    display:flex;
+    align-items: flex-start;
+    flex-direction:column;
+    justify-content:flex-start;
+    margin-left: 7px;
+}
+    .a-menu li {
+        display:flex;
+        margin:0;
+    }
+        .a-menu li a {
+            font-size: 21px;
+            font-weight: 300;
+            color: bisque;
+            text-decoration: none;
+            padding: 10px 0px;
+        }
+            .a-menu li a:hover {
+                color: darkorange;
+                border-bottom: 1px solid darkorange;
+            }

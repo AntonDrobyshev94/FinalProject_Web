@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Добавление ссылки";
+    Layout = "_Layout";
+}
+<link href="~/css/IndexStyle.css" rel="stylesheet" />
+@{
+    bool isAdmin;
+    if (ViewBag.IsAdmin != null && ViewBag.IsAdmin == true)
+    {
+        isAdmin = true;
+    }
+    else
+    {
+        isAdmin = false;
+    }
+}
+
+@if (!isAdmin) // не забыть поменять
+{
+    <div class="form-container">
+        <div class="request-form center">
+            <div>
+                <form action="~/Web/AddLink" method="post" enctype="multipart/form-data" id="uploadForm">
+                    <input type="file" name="imageFile" accept="image/*" id="uploadInput" />
+                    <label>Ссылка</label>
+                    <input type="text" name="url" value="" /><br />
+                    <p><input type="submit" style="margin-top:20px" class="styled-button" value="Добавить" /></p>
+                </form>
+            </div>
+        </div>
+    </div>
+}

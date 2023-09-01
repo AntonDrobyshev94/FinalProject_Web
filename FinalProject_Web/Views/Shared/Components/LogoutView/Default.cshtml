@@ -1,0 +1,232 @@
+﻿@using FinalProject_Web.Controllers;
+@using FinalProject_Web.Data;
+@using FinalProject_Web.AuthFinalProjectApp;
+
+<link href="~/css/StyleSheet.css" rel="stylesheet" />
+<link href="~/css/AdminStyle.css" rel="stylesheet"/>
+<link href="~/css/FooterStyle.css" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+@{
+    bool isAuth = false;
+    bool isAdmin = false;
+    TitleModel titleModel;
+    List<TagModel> tagModelList = new List<TagModel>();
+    if (ViewBag.TagModelList != null)
+    {
+        tagModelList = ViewBag.TagModelList;
+    }
+    int randomInt = 0;
+    if (ViewBag.RandomTag != null)
+    {
+        randomInt = ViewBag.RandomTag;
+    }
+    string tag = string.Empty;
+
+    foreach (var concreteTag in tagModelList)
+    {
+        if (concreteTag.ID == randomInt)
+        {
+            tag = concreteTag.Tag;
+        }
+    }
+
+    if (ViewBag.TitleModel != null)
+    {
+        titleModel = ViewBag.TitleModel;
+    }
+    else
+    {
+        titleModel = null;
+    }
+    if (ViewBag.IsAuth != null && ViewBag.IsAuth == true)
+    {
+        isAuth = true;
+        if (ViewBag.RoleName != null && ViewBag.RoleName == "Admin")
+        {
+            isAdmin = true;
+        }
+        else
+        {
+            isAdmin = false;
+        }
+    }
+    else
+    {
+        isAuth = false;
+    }
+    bool isEditMode;
+    if (ViewBag.IsEditMode != null && ViewBag.IsEditMode == true)
+    {
+        isEditMode = true;
+    }
+    else
+    {
+        isEditMode = false;
+    }
+}
+
+<body>
+    @if (!isAdmin)
+    {
+    <div class="header-wrap">
+        <header class="header">
+            <nav>
+                <ul class="menu">
+                    <li>
+                        <div class="links-container">
+                            @if (isAuth)
+                            {
+                                if(titleModel!=null)
+                                {
+                                    <a href="~/">@titleModel.MainTitle</a>
+                                        <a href="/Web/Services">@titleModel.ServicesTitle</a>
+                                        <a href="/Web/Projects">@titleModel.ProjectsTitle</a>
+                                        <a href="/Web/Blog">@titleModel.BlogTitle</a>
+                                        <a href="/Web/Contacts">@titleModel.ContactsTitle</a>
+                                }
+                                else
+                                {
+                                    <a href="~/"></a>
+                                    <a href="/Web/Services"></a>
+                                    <a href="/Web/Projects"></a>
+                                    <a href="/Web/Blog"></a>
+                                    <a href="/Web/Contacts"></a>
+                                }
+                                <form method="post" asp-controller="Account" asp-action="Logout" id="logoutform" asp-antiforgery="true">
+                                    <b href="#" onclick="document.getElementById('logoutform').submit()">Выход</b>
+                                </form>
+                                    <a herf="#">@ViewBag.UserName в системе</a>
+                                }
+                                else
+                                {
+                                    if (titleModel != null)
+                                    {
+                                        <a href="~/">@titleModel.MainTitle</a>
+                                        <a href="/Web/Services">@titleModel.ServicesTitle</a>
+                                        <a href="/Web/Projects">@titleModel.ProjectsTitle</a>
+                                        <a href="/Web/Blog">@titleModel.BlogTitle</a>
+                                        <a href="/Web/Contacts">@titleModel.ContactsTitle</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="~/"></a>
+                                        <a href="/Web/Services"></a>
+                                        <a href="/Web/Projects"></a>
+                                        <a href="/Web/Blog"></a>
+                                        <a href="/Web/Contacts"></a>
+                                    }
+                                    <a href="/Account/Login">Вход</a>
+                                    <a href="/Account/Register">Регистрация </a>
+                            }
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+            <header class="header">
+                <h1 class="tagline">@tag</h1>
+                </header>
+        </div>
+    }
+    else
+    {
+        @if (!isEditMode)
+        {
+            <div class="header-wrap-admin">
+                <nav>
+                    <ul class="a-menu">
+                        <li>
+                            <div class="links-container-admin">
+                                @if (titleModel != null)
+                                {
+                                    <a href="/Web/DekstopWindow">Рабочий стол</a>
+                                    <a href="~/">@titleModel.MainTitle</a>
+                                    <a href="/Web/Services">@titleModel.ServicesTitle</a>
+                                    <a href="/Web/Projects">@titleModel.ProjectsTitle</a>
+                                    <a href="/Web/Blog">@titleModel.BlogTitle</a>
+                                    <a href="/Web/Contacts">@titleModel.ContactsTitle</a>
+                                }
+                                else
+                                {
+                                    <a href="/Web/DekstopWindow">Рабочий стол</a>
+                                    <a href="~/"></a>
+                                    <a href="/Web/Services"></a>
+                                    <a href="/Web/Projects"></a>
+                                    <a href="/Web/Blog"></a>
+                                    <a href="/Web/Contacts"></a>
+                                }
+                                <form method="post" style="padding-top:10px" asp-controller="Account" asp-action="Logout" id="logoutform" asp-antiforgery="true">
+                                    <a href="#" onclick="document.getElementById('logoutform').submit()">Выход</a>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header-wrapper">
+                <header class="header">
+                    <nav>
+                        <ul class="menu">
+                            <li>
+                                <div class="links-container">
+                                    <a herf="#">@ViewBag.UserName в системе</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </header>
+            </div>
+        }
+        else
+        {
+            <div class="header-wrap-admin">
+                <nav>
+                    <div class="a-menu">
+                            <div class="links-container-adminEdit">
+                                <form method="post" class="edit-form" style="margin-bottom:30px" action="~/Web/EditTitleMethod">
+                                @if (titleModel != null)
+                                    {
+                                    <input type="text" name="mainTitle" value="@titleModel.MainTitle" />
+                                    <input type="text" name="servicesTitle" value="@titleModel.ServicesTitle" />
+                                    <input type="text" name="projectsTitle" value="@titleModel.ProjectsTitle" />
+                                    <input type="text" name="blogTitle" value="@titleModel.BlogTitle" />
+                                    <input type="text" name="contactsTitle" value="@titleModel.ContactsTitle" />
+                                    }
+                                    else
+                                    {
+                                        <input type="text" name="mainTitle" value="" />
+                                        <input type="text" name="servicesTitle" value="" />
+                                        <input type="text" name="projectsTitle" value="" />
+                                        <input type="text" name="blogTitle" value="" />
+                                        <input type="text" name="contactsTitle" value="" />
+                                    }
+                                    <button class="styled-button" style="margin-left:10px" type="submit">Сохранить</button>
+                                </form>
+                                <form method="post" class="edit-form" asp-controller="Account" asp-action="Logout" id="logoutform" asp-antiforgery="true">
+                                    <a href="#" onclick="document.getElementById('logoutform').submit()">Выход</a>
+                                </form>
+                            </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="header-wrapper">
+                <header class="header">
+                    <nav>
+                        <ul class="menu">
+                            <li>
+                                <div class="links-container">
+                                    <a herf="#">@ViewBag.UserName в системе</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </header>
+            </div>
+        }
+    }
+</body>
+
+

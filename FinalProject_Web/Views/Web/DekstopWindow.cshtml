@@ -1,0 +1,146 @@
+﻿@{
+    ViewData["Title"] = "Рабочий стол";
+    Layout = "_Layout";
+}
+<link href="~/css/IndexStyle.css" rel="stylesheet" />
+@using FinalProject_Web.AuthFinalProjectApp;
+@{
+    int allRequestCounter = ViewBag.AllRequestCounter;
+    int currentRequestCounter = ViewBag.CurrentRequestCounter;
+    List<Application> modelList = ViewBag.ApplicationList;
+    string applicationName = string.Empty;
+}
+<div class="block-dekstop">
+    <div class="block-dekstop-header">
+        <div class="form-header">
+            <h2>Всего заявок: @allRequestCounter</h2>
+        </div>
+        <div class="form-time">
+            <header class="form-time-header">
+                <nav>
+                    <ul class="form-time-header-menu">
+                        <li>
+                            <div class="date-container">
+                                @if(ViewBag.ButtonChangeColor == "today")
+                                {
+                                    <input type="button" style="color:blue" name="today" value="Сегодня" data-period="today" onclick="location.href='@Url.Action("DateMethod", "Web", new { period = "today"})'" />
+                                    <input type="button" name="yesterday" value="Вчера" data-period="yesterday" onclick="location.href='@Url.Action("DateMethod", "Web", new { period = "yesterday"})'" />
+                                    <input type="button" name="week" value="Неделя" data-period="week" onclick="location.href='@Url.Action("DateMethod", "Web", new { period = "week"})'" />
+                                    <input type="button" name="month" value="Месяц" data-period="month" onclick="location.href='@Url.Action("DateMethod", "Web", new { period = "month"})'" />
+                                }
+                                else if (ViewBag.ButtonChangeColor == "yesterday")
+                                {
+                                    <input type="button" name="today" value="Сегодня" data-period="today" onclick="location.href='@Url.Action("DateMethod", "Web", new { period = "today"})'" />
+                                    <input type="button" style="color:blue" name="yesterday" value="Вчера" data-period="yesterday" onclick="location.href='@Url.Action("DateMethod", "Web", new { period = "yesterday"})'" />
+                                    <input type="button" name="week" value="Неделя" data-period="week" onclick="location.href='@Url.Action("DateMethod", "Web", new { period = "week"})'" />
+                                    <input type="button" name="month" value="Месяц" data-period="month" onclick="location.href='@Url.Action("DateMethod", "Web", new { period = "month"})'" />
+                                }
+                                else if (ViewBag.ButtonChangeColor == "week")
+                                {
+                                    <input type="button" name="today" value="Сегодня" data-period="today" onclick="location.href='@Url.Action("DateMethod", "Web", new { period = "today"})'" />
+                                    <input type="button" name="yesterday" value="Вчера" data-period="yesterday" onclick="location.href='@Url.Action("DateMethod", "Web", new { period = "yesterday"})'" />
+                                    <input type="button" style="color:blue" name="week" value="Неделя" data-period="week" onclick="location.href='@Url.Action("DateMethod", "Web", new { period = "week"})'" />
+                                    <input type="button" name="month" value="Месяц" data-period="month" onclick="location.href='@Url.Action("DateMethod", "Web", new { period = "month"})'" />
+                                }
+                                else if (ViewBag.ButtonChangeColor == "month")
+                                {
+                                    <input type="button" name="today" value="Сегодня" data-period="today" onclick="location.href='@Url.Action("DateMethod", "Web", new { period = "today"})'" />
+                                    <input type="button" name="yesterday" value="Вчера" data-period="yesterday" onclick="location.href='@Url.Action("DateMethod", "Web", new { period = "yesterday"})'" />
+                                    <input type="button" name="week" value="Неделя" data-period="week" onclick="location.href='@Url.Action("DateMethod", "Web", new { period = "week"})'" />
+                                    <input type="button" style="color:blue" name="month" value="Месяц" data-period="month" onclick="location.href='@Url.Action("DateMethod", "Web", new { period = "month"})'" />
+                                }
+                                else
+                                {
+                                    <input type="button" name="today" value="Сегодня" data-period="today" onclick="location.href='@Url.Action("DateMethod", "Web", new { period = "today"})'" />
+                                    <input type="button" name="yesterday" value="Вчера" data-period="yesterday" onclick="location.href='@Url.Action("DateMethod", "Web", new { period = "yesterday"})'" />
+                                    <input type="button" name="week" value="Неделя" data-period="week" onclick="location.href='@Url.Action("DateMethod", "Web", new { period = "week"})'" />
+                                    <input type="button" name="month" value="Месяц" data-period="month" onclick="location.href='@Url.Action("DateMethod", "Web", new { period = "month"})'" />
+                                }
+
+                                <form id="dateForm" class="date-container-form" method="post" action="~/Web/DateSelect">
+                                    <input type="date" name="startDate" id="startDate"/>
+                                    <input type="date" name="endDate" id="endDate"/>
+                                    <button type="submit" class="header-menu-button-submit">Выбрать даты</button>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+    </div>
+    <div class="application-container">
+        @if(DateTime.Parse(ViewBag.StartDate) < new DateTime(2023,1,1 ))
+        {
+            <h2>Рассматриваемый период не выбран.</h2>
+        }
+        else
+        {
+            int lastDigit = @currentRequestCounter % 10;
+            if (lastDigit == 0 || lastDigit == 5 || lastDigit == 6
+            || lastDigit == 7 || lastDigit == 8 || lastDigit == 9)
+            {
+                applicationName = "заявок";
+            }
+            else if (lastDigit == 2 || lastDigit == 3 || lastDigit == 4)
+            {
+                applicationName = "заявки";
+            }
+            else if (lastDigit == 1)
+            {
+                applicationName = "заявка";
+            }
+            <h2>В период с @ViewBag.StartDate по @ViewBag.EndDate поступило: @currentRequestCounter @applicationName</h2>
+        }
+        
+        <table class="custom-table">
+            <thead>
+                <tr class="custom-table-header">
+                    <th width="100">Номер заявки</th>
+                    <th width="200">Время заявки</th>
+                    <th width="200">Имя</th>
+                    <th width="400">Текст заявки</th>
+                    <th width="200">Контакты</th>
+                    <th width="200">Статус</th>
+                    <th width="200">Изменить статус</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (Application application in modelList)
+                {
+                    <tr class="custom-table-cell">
+                        <td>@Html.DisplayFor(modelItem => application.ID)</td>
+                        <td>@Html.DisplayFor(modelItem => application.Date)</td>
+                        <td>@Html.DisplayFor(modelItem => application.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => application.Message)</td>
+                        <td>@Html.DisplayFor(modelItem => application.EMail)</td>
+                        <td>@Html.DisplayFor(modelItem => application.Status)</td>
+                        <td>
+                            <form id="statusForm" method="post" action="~/Web/ChangeRequestStatus">
+                                <select id="statusSelect" name="status" class="form-options">
+                                    <option value="@application.Status">@application.Status</option>
+                                    <option value="Получена">Получена</option>
+                                    <option value="В работе">В работе</option>
+                                    <option value="Выполнена">Выполнена</option>
+                                    <option value="Отклонена">Отклонена</option>
+                                    <option value="Отменена">Отменена</option>
+                                </select>
+                                <input type="hidden" name="id" value="@application.ID">
+                                <input type="hidden" name="name" value="@application.Name">
+                                <input type="hidden" name="eMail" value="@application.EMail">
+                                <input type="hidden" name="message" value="@application.Message">
+                                <input type="hidden" name="date" value="@application.Date">
+                                <button type="submit" class="submit-button">Изменить статус</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+

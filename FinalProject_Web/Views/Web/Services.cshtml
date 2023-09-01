@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Услуги";
+    Layout = "_Layout";
+}
+@using FinalProject_Web.Model
+@model List<Service>
+<link href="~/css/StyleSheet.css" rel="stylesheet" />
+@{
+    bool isEditMode;
+    if (ViewBag.IsEditMode != null && ViewBag.IsEditMode == true)
+    {
+        isEditMode = true;
+    }
+    else
+    {
+        isEditMode = false;
+    }
+}
+<div class="block">
+    <div class="block-container">
+        <h1>Что мы можем сделать</h1>
+        @if(Model !=null)
+        {
+            @foreach (var service in Model)
+            {
+                <div class="block-item">
+                    <div class="block-title">@service.Name</div>
+                    <div class="block-text">@service.Description</div>
+                    @if (isEditMode)
+                    {
+                        <div class="form-button" style="height:40px; display: inline-block; margin-right: 10px">
+                            <img src="/img/editButton.png" alt="Изменить" class="button-ic" onclick="location.href='@Url.Action("ChangeServiceWindow", "Web", new { id = service.Id})'" />
+                        </div>
+                        <div class="form-button" style="height:40px; display: inline-block; margin-right: 10px">
+                            <img src="/img/delete.png" alt="Удалить" class="button-ic" onclick="location.href='@Url.Action("DeleteService", "Web", new { id = service.Id})'" />
+                        </div>
+                    }
+                </div>
+            }
+        }
+
+        @if(isEditMode)
+        {
+            <div class="form-button" style="height:40px">
+                <a class="styled-button" href="~/Web/AddServiceWindow">Добавить услугу</a>
+            </div>
+        }
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src ="~/js/slider_script.js"></script>

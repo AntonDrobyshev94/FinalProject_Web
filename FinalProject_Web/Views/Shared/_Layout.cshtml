@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"]</title>
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <link href="~/css/FooterStyle.css" rel="stylesheet" />
+    @using FinalProject_Web.Model;
+    @using FinalProject_Web.Vars;
+</head>
+@{
+    bool isAdmin;
+    string redact = "Редактировать";
+
+    TitleModel titleModel;
+    if (ViewBag.TitleModel != null)
+    {
+        titleModel = ViewBag.TitleModel;
+    }
+    else
+    {
+        titleModel = null;
+    }
+    if (ViewBag.RoleName != null && ViewBag.RoleName == "Admin")
+    {
+        isAdmin = true;
+    }
+    else
+    {
+        isAdmin = false;
+    }
+    bool isRedactWindow;
+    if(ViewBag.IsRedactWindow !=null && ViewBag.IsRedactWindow == true)
+    {
+        isRedactWindow = true;
+    }
+    else
+    {
+        isRedactWindow = false;
+    }
+    if (ViewBag.IsEditMode == true && ViewBag.IsEditMode != null)
+    {
+        redact = "Закончить редактирование";
+    }
+    else
+    {
+        redact = "Редактировать";
+    }
+}
+<body style="margin:0px">
+    <div class="wrapper">
+        <div class="BG">
+            <div class="head"> @await Component.InvokeAsync("LogoutView") </div>
+            <div>
+                @if(isAdmin)
+                {
+                    <main style="margin-left:200px; margin-right:30px">
+                        @RenderBody()
+                        <div style="display:flex; margin-top:10px; justify-content:center">
+                            @if (isAdmin && isRedactWindow)
+                            {
+                                <div class="form-button">
+                                    <form method="post" style="margin-bottom:30px" action="~/Web/EditModeMethod">
+                                        <input type="hidden" name="viewName" value="@ViewContext.RouteData.Values["action"]">
+                                        <button class="styled-button" type="submit">@redact</button>
+                                    </form>
+                                </div>
+                            }
+                        </div>
+                    </main>
+                }
+                else
+                {
+                    <main style="margin-right:30px; margin-left:30px">
+                        @RenderBody()
+                    </main>
+                }
+                
+            </div>
+        </div>
+    </div>
+    @if(isAdmin)
+    {
+        <div class="footer-wrapper">
+            <section class="footer">
+                <nav>
+                    @if (titleModel != null)
+                    {
+                        <a href="~/">@titleModel.MainTitle</a>
+                        <a href="/Web/Services">@titleModel.ServicesTitle</a>
+                        <a href="/Web/Projects">@titleModel.ProjectsTitle</a>
+                        <a href="/Web/Blog">@titleModel.BlogTitle</a>
+                        <a href="/Web/Contacts">@titleModel.ContactsTitle</a>
+                    }
+                    else
+                    {
+                        <a href="~/"></a>
+                        <a href="/Web/Services"></a>
+                        <a href="/Web/Projects"></a>
+                        <a href="/Web/Blog">e</a>
+                        <a href="/Web/Contacts"></a>
+                    }
+
+                    <a><p></p></a>
+                    <a href="#">
+                        <img src="/img/otpravit_zayavku.png" />
+                    </a>
+                </nav>
+            </section>
+        </div>
+    }
+    else
+    {
+        <div class="footer-wrapper-else">
+            <section class="footer">
+                <nav style="margin-left:30px">
+                    @if (titleModel != null)
+                    {
+                        <a href="~/">@titleModel.MainTitle</a>
+                        <a href="/Web/Services">@titleModel.ServicesTitle</a>
+                        <a href="/Web/Projects">@titleModel.ProjectsTitle</a>
+                        <a href="/Web/Blog">@titleModel.BlogTitle</a>
+                        <a href="/Web/Contacts">@titleModel.ContactsTitle</a>
+                    }
+                    else
+                    {
+                        <a href="~/">@titleModel.MainTitle</a>
+                        <a href="/Web/Services">@titleModel.ServicesTitle</a>
+                        <a href="/Web/Projects">@titleModel.ProjectsTitle</a>
+                        <a href="/Web/Blog">@titleModel.BlogTitle</a>
+                        <a href="/Web/Contacts">@titleModel.ContactsTitle</a>
+                    }
+                    <a><p></p></a>
+                    <a href="~/#">
+                        <img src="/img/otpravit_zayavku.png" />
+                    </a>
+                </nav>
+            </section>
+        </div>
+    }
+</body>
+</html>

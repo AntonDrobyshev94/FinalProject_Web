@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Изменение ссылки";
+    Layout = "_Layout";
+}
+<link href="~/css/IndexStyle.css" rel="stylesheet" />
+@using FinalProject_Web.Model;
+@{
+    bool isAdmin;
+    if (ViewBag.IsAdmin != null && ViewBag.IsAdmin == true)
+    {
+        isAdmin = true;
+    }
+    else
+    {
+        isAdmin = false;
+    }
+}
+@model LinkModel
+@if (!isAdmin) // не забыть поменять
+{
+    <div class="form-container">
+
+        <div class="request-form center">
+            <div>
+                <form action="~/Web/ChangeLink" method="post" enctype="multipart/form-data" id="uploadForm">
+                    <input type="file" name="imageFile" accept="image/*" id="uploadInput" />
+                    <input type="hidden" name="imageName" value="@Model.ImageName">
+                    <input type="hidden" name="id" value="@Model.Id">
+                    <label>Ссылка</label>
+                    <input type="text" name="url" value="@Model.Url" /><br />
+                    <p><input type="submit" style="margin-top:20px" class="styled-button" value="Подтвердить изменения" /></p>
+                </form>
+            </div>
+        </div>
+    </div>
+}

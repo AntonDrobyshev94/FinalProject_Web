@@ -1,0 +1,103 @@
+﻿@{
+    ViewData["Title"] = "Контакты";
+    Layout = "_Layout";
+}
+@using FinalProject_Web.Model
+@model List<LinkModel>
+<link href="~/css/StyleSheet.css" rel="stylesheet" />
+@{
+    Contacts contacts;
+    if(ViewBag.Contacts !=null)
+    {
+        contacts = ViewBag.Contacts;
+    }
+    else
+    {
+        contacts = null;
+    }
+    bool isEditMode;
+    if (ViewBag.IsEditMode != null && ViewBag.IsEditMode == true)
+    {
+        isEditMode = true;
+    }
+    else
+    {
+        isEditMode = false;
+    }
+}
+
+<div class="block">
+    <div class="block-common">
+        <h1>Контакты</h1>
+        <div class="block-common-contacts">
+            <div class="block-header-contact">
+                <div class="block-header-contact-info">
+                    @if(contacts !=null)
+                    {
+                        <p>Адрес: @contacts.Address</p>
+                        <p>Телефон: @contacts.Telephone</p>
+                        <p>Факс: @contacts.Fax</p>
+                        <p>e-Mail: @contacts.Email</p>
+                    }
+                    else
+                    {
+                        <p>Адрес:</p>
+                        <p>Телефон: </p>
+                        <p>Факс: </p>
+                        <p>e-Mail: </p>
+                    }
+                    @if (isEditMode)
+                    {
+                        <div class="form-button" style="height:40px; margin-bottom:10px">
+                            <a class="styled-button" href="~/Web/ChangeContactWindow">Изменить контактные данные</a>
+                        </div>
+                    }
+                </div>
+                <div class="block-header-contact-logo">
+                @if (Model != null)
+                {
+                    @foreach (var link in Model)
+                    {
+                            <div class="block-header-contact-logo-concreteLogo">
+                                <a href="@link.Url">
+                                    <img style="width:30px" src="~/img/@link.ImageName" />
+                                </a>
+                                @if (isEditMode)
+                                {
+                                    <div class="form-button" style="height:30px;">
+                                        <img src="/img/editButton.png" alt="Изменить" class="button-ic" onclick="location.href='@Url.Action("ChangeLinkWindow", "Web", new { id = link.Id})'" />
+                                    </div>
+                                    <div class="form-button" style="height:30px;">
+                                        <img src="/img/delete.png" alt="Удалить" class="button-ic" onclick="location.href='@Url.Action("DeleteLink", "Web", new { id = link.Id})'" />
+                                    </div>
+                                }
+                        </div> 
+                    }
+                }
+                </div>
+            </div>
+            <div class="block-common-logo">
+                @if(contacts !=null)
+                {
+                    <a>
+                        <img style="width:500px" src="~/img/ContactsMap.png"/>
+                    </a>
+                }
+                else
+                {
+                    <a>
+                        <img style="width:500px" src="~/img/Карта.bmp" />
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="block-footer">
+    @if (isEditMode)
+    {
+        <div class="form-button" style="height:40px">
+            <a class="styled-button" href="~/Web/AddLinkWindow">Добавить ссылку</a>
+        </div>
+    }
+</div>

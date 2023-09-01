@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "Проекты";
+    Layout = "_Layout";
+}
+@using FinalProject_Web.Model
+@model List<ProjectModel>
+<link href="~/css/StyleSheet.css" rel="stylesheet" />
+@{
+    bool isEditMode;
+    if (ViewBag.IsEditMode != null && ViewBag.IsEditMode == true)
+    {
+        isEditMode = true;
+    }
+    else
+    {
+        isEditMode = false;
+    }
+}
+<div class="block">
+    <div class="block-header">
+        <h1>Наши проекты</h1>
+    </div>
+    <div class="project-container">
+            @if (Model != null)
+            {
+                @foreach (var project in Model)
+                {
+                <div class="block-container-items">
+                    <div class="block-container-project">
+                        <div class="block-item-project">
+                            <div class="form-picture-project">
+                                <div class="form-picture-project-block">
+                                    <a href="~/Web/ProjectDetails?id=@project.Id">
+                                    <img src="~/img/@project.ImageName"/>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="block-text-project">@project.Name</div>
+                        </div>
+                    </div>
+                    @if (isEditMode)
+                    {
+                        <div class="form-button" style="height:40px; display: inline-block; margin-left:15px; margin-right: 5px">
+                            <img src="/img/editButton.png" alt="Изменить" class="button-ic" onclick="location.href='@Url.Action("ChangeProjectWindow", "Web", new { id = project.Id})'" />
+                        </div>
+                        <div class="form-button" style="height:40px; display: inline-block; margin-right: 10px">
+                            <img src="/img/delete.png" alt="Удалить" class="button-ic" onclick="location.href='@Url.Action("DeleteProject", "Web", new { id = project.Id})'" />
+                        </div>
+                    }
+                </div>
+                }
+            }
+    </div>
+</div>
+<div class="block-footer">
+    @if (isEditMode)
+    {
+        <div class="form-button" style="height:40px">
+            <a class="styled-button" href="~/Web/AddProjectWindow">Добавить проект</a>
+        </div>
+    }
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/js/slider_script.js"></script>

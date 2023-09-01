@@ -1,0 +1,35 @@
+﻿@model FinalProject_Web.AuthFinalProjectApp.UserRegistration 
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<div class="login-container">
+    <div class="login-container-row">
+        <div class="login-container-class">
+            <h3 class="text-center">Регистрация</h3>
+            <form asp-action="Register" asp-antiforgery="true" class="form">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="login-container-class-form">
+                    <div class="form-group">
+                        <input asp-for="LoginProp" class="login-container-class-form-input" placeholder="Логин" />
+                    </div>
+                </div>
+
+                <div class="login-container-class-form">
+                    <div class="form-group">
+                        <input asp-for="Password" class="login-container-class-form-input" placeholder="Пароль" />
+                    </div>
+                </div>
+
+                <div class="login-container-class-form">
+                    <div class="form-group">
+                        <input asp-for="ConfirmPassword" class="login-container-class-form-input" placeholder="Продублируйте пароль" />
+                    </div>
+                </div>
+                <div class="login-container-class-form">
+                    <button type="submit" class="styled-button">Зарегистрироваться</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

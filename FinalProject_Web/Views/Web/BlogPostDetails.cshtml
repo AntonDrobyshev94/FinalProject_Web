@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Блог";
+    Layout = "_Layout";
+}
+@using FinalProject_Web.Model
+@model BlogModel
+<link href="~/css/StyleSheet.css" rel="stylesheet" />
+
+<div class="block">
+    <div class="block-common">
+        <h1>@Model.Name</h1>
+        <div class="block-common-blog">
+            <div class="block-common-logo">
+                <a href="~/Web/BlogPostDetails?id=@Model.Id">
+                    <img style="width:450px" src="~/img/@Model.ImageName" />
+                </a>
+            </div>
+            <div class="block-header-title">
+                <div class="blog-details">
+                    <div class="blog-details-text">
+                        <h3 class="blog-details-text-h3">@Model.BlogPost</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

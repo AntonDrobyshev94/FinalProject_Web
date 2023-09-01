@@ -1,0 +1,133 @@
+﻿@{
+    ViewData["Title"] = "Главная";
+    Layout = "_Layout";
+}
+<link href="~/css/IndexStyle.css" rel="stylesheet" />
+@{
+    TitleModel titleModel;
+    List<TagModel> tagModelList = new List<TagModel>();
+    if(ViewBag.TagModelList !=null)
+    {
+        tagModelList = ViewBag.TagModelList;
+    }
+
+    if(ViewBag.TitleModel !=null)
+    {
+        titleModel = ViewBag.TitleModel ;
+    }
+    else
+    {
+        titleModel = null;
+    }
+    bool isEditMode;
+    if(ViewBag.IsEditMode !=null && ViewBag.IsEditMode == true)
+    {
+        isEditMode = true;
+    }
+    else
+    {
+        isEditMode = false;
+    }
+}
+<div class="block-index">
+    <div class="form-picture-index">
+        <a href="#">
+            <img style="width:600px" src="/img/Application.png" />
+        </a>
+    </div>
+    @if (isEditMode)
+    {
+        <div class="form-picture-index">
+            <form action="~/Web/UploadImage" method="post" enctype="multipart/form-data" id="uploadForm">
+                <input type="file" name="imageFile" accept="image/*" style="display: none;" id="uploadInput" />
+                <input type="hidden" name="fileName" value="Application.png" />
+                <label for="uploadInput" class="button-wrapper">
+                    <img src="/img/editButton.png" alt="Редактировать" class="button-icon" />
+                </label>
+            </form>
+        </div>
+        <div class="form-tag">
+            <table class="index-table">
+                <thead>
+                    <tr class="custom-table-header">
+                        <th width="100">ID</th>
+                        <th width="500">Текст тэга</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (TagModel tag in tagModelList)
+                    {
+                        <tr class="custom-table-cell">
+                            <td>@Html.DisplayFor(modelItem => tag.ID)</td>
+                            <td>@Html.DisplayFor(modelItem => tag.Tag)</td>
+                            <td>
+                                <input type="button" class="btn" value="Удалить" onclick="location.href='@Url.Action("DeleteTag", "Web", new { id = tag.ID})'" />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <form method="post" class="index-table-form" id="AddTag" action="~/Web/AddTag">
+                <input type="text" name="newTag" style="margin-right:10px"  value="" />
+                <button class="styled-button" style ="width:200px" type="submit">Добавить тэг</button>
+            </form>
+        </div>
+    }
+    <script src="~/js/scripts.js"></script>
+    <div class="form-container">
+        <div class="request-form center">
+            @if (isEditMode)
+            {
+                @if (titleModel != null)
+                {
+                    <form method="post" style="margin-bottom:30px" id="saveMethod" action="~/Web/EditTitleMethod">
+                        <input type="text" name="newTitle" value="@titleModel.Title" />
+                        <button class="styled-button" style="margin-top:10px" type="submit">Сохранить</button>
+                    </form>
+                }
+                else
+                {
+                    <form method="post" style="margin-bottom:30px" id="saveMethod" action="~/Web/EditTitleMethod">
+                        <input type="text" name="newTitle" value="" />
+                        <button class="styled-button" type="submit">Сохранить</button>
+                    </form>
+                }
+            }
+            else
+            {
+                @if (titleModel != null)
+                {
+                    <h1 class="form-tittle">@titleModel.Title</h1>
+                }
+                else
+                {
+                    <h1 class="form-tittle"></h1>
+                }
+            }
+            <form action="~/Web/AddRequest" method="post">
+                <div class="form-fields">
+                    <div class="form-fields">
+                        <input type="text" placeholder="Имя" name="Name" />
+                    </div>
+                    <div class="form-fields">
+                        <input type="text" placeholder="eMail" name="eMail" />
+                    </div>
+                </div>
+                <textarea name="message" class="description" placeholder="Текст сообщения"></textarea>
+                @if (TempData["RequestMessage"] != null && TempData["IsCorrectRequest"] != null)
+                {
+                    <div class="@((bool)TempData["IsCorrectRequest"]? "success" : "alert")">@TempData["RequestMessage"]</div>
+                }
+                <div class="form-buttons">
+                    <input type="submit" class="styled-button" style="margin-left:2px;"  value="Подтвердить" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+

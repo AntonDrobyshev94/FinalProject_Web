@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Дополнение блога";
+    Layout = "_Layout";
+}
+<link href="~/css/IndexStyle.css" rel="stylesheet" />
+@{
+    bool isAdmin;
+    if (ViewBag.IsAdmin != null && ViewBag.IsAdmin == true)
+    {
+        isAdmin = true;
+    }
+    else
+    {
+        isAdmin = false;
+    }
+}
+
+@if (!isAdmin) // не забыть поменять
+{
+    <div class="form-container">
+        <div class="request-form center">
+            <div>
+                <form action="~/Web/AddBlog" method="post" enctype="multipart/form-data" id="uploadForm">
+                    <input type="file" name="imageFile" accept="image/*" id="uploadInput" />
+                    <label>Заголовок</label>
+                    <input maxlength="33" type="text" name="name" value="" /><br />
+                    <label>Краткое описание</label><br/>
+                    <textarea maxlength="245" name="description" rows="3" class="description"></textarea><br /><br />
+                    <label>Содержимое поста</label><br />
+                    <textarea name="blogPost" rows="7" class="description"></textarea><br /><br />
+                    <p><input type="submit" style="margin-top:20px" class="styled-button" value="Добавить" /></p>
+                </form>
+            </div>
+        </div>
+    </div>
+}

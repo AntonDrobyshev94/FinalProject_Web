@@ -1,0 +1,32 @@
+﻿.footer-wrapper {
+    margin-left: 200px;
+}
+
+.footer-wrapper-else {
+    margin:0;
+}
+
+.footer {
+    background-image: url('../img/cad-header-background-2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0px 0 100px 0;
+    width: 100%;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    background-attachment: fixed;
+}
+    .footer nav a {
+        margin-left: 15px;
+        font-size: 18px;
+        font-weight: 300;
+        color: white;
+        text-decoration: none;
+        box-sizing: border-box;
+    }
+        .footer nav a:hover {
+            color: darkorange;
+            border-bottom: 1px solid darkorange;
+        }
+

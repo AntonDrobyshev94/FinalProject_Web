@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Проекты";
+    Layout = "_Layout";
+}
+@using FinalProject_Web.Model
+@model ProjectModel
+<link href="~/css/StyleSheet.css" rel="stylesheet" />
+
+<div class="block">
+    <div class="block-common-header">
+        <div class="block-header-title">
+            <h1>@Model.Name</h1>
+            <div class="project-details">
+                <div class="project-details-text">
+                    <h3>@Model.Description</h3>
+                </div>
+            </div>
+        </div>
+        <div class="block-header-logo">
+            <a href="~/Web/ProjectDetails?id=@Model.Id">
+                <img style="width:200px" src="~/img/@Model.ImageName" />
+            </a>
+        </div>
+    </div>
+</div>
