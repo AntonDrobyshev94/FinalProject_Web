@@ -493,7 +493,7 @@ namespace FinalProject_Web.Data
         /// <param name="httpContext"></param>
         public void ChangeContacts(Contacts contacts, HttpContext httpContext)
         {
-            string url = $"https://localhost:7037/api/values/ChangeContacts";
+            string url = $"https://localhost:7037/api/values/ChangeContact";
             AddTokenHeaderMethod(httpContext);
             var r = httpClient.PostAsync(
                 requestUri: url,
