@@ -39,6 +39,22 @@ namespace FinalProject_Web.Controllers
             return View();
         }
         #region Application
+
+        /// <summary>
+        /// Метод добавления заявки, принимающей строковые переменные имени, 
+        /// почты и сообщения. В методе используется блок try catch,
+        /// в котором происходит запуск метода обращения к API для добавления
+        /// заявки AddAplication. При успешном запросе происходит передача
+        /// новой заявки в API. В TempData сохраняется результат успешной
+        /// отправки, который считывается во View и отображается для 
+        /// пользователя в виде сообщения об успешной отправке. В противном
+        /// случае в TempData сохраняется результат ошибки и считывается
+        /// во View.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="eMail"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult AddRequest(string name, string eMail, string message)
         {
@@ -70,6 +86,19 @@ namespace FinalProject_Web.Controllers
             return Redirect("~/");
         }
 
+        /// <summary>
+        /// Метод изменения статуса заявки, принимающий строковую переменную
+        /// заявки, значение id заявки и остальные переменные (их значения
+        /// не учитываются). Изменение статуса происходит с помощью метода
+        /// взаимодействия с API ChangeApplicationStatus
+        /// </summary>
+        /// <param name="status"></param>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="eMail"></param>
+        /// <param name="message"></param>
+        /// <param name="date"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult ChangeRequestStatus(string status, int id, string name, string eMail, string message, DateTime date)
         {
@@ -82,6 +111,18 @@ namespace FinalProject_Web.Controllers
             return Redirect("~/Web/DekstopWindow");
         }
 
+        /// <summary>
+        /// Метод перехода во View рабочего стола, в котором происходит
+        /// проверка наличия куки диапазона дат. Если куки не установлены, 
+        /// то проверяются куки рассматриваемого периода, в зависимости
+        /// от которого устанавливается диапазон дат. Если куки установлены,
+        /// то период устаналивается из принимаемых значений диапазона.
+        /// Далее, происходит перебор коллекции заявок в цикле и запись
+        /// заявок, совпадающих по условию диапазона дат, в новую коллекцию
+        /// заявок с дальнейшей передачей коллекции во ViewBag в качестве
+        /// модели.
+        /// </summary>
+        /// <returns></returns>
         public IActionResult DekstopWindow()
         {
             if (!_applicationData.CheckToken(HttpContext))
@@ -187,6 +228,13 @@ namespace FinalProject_Web.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Метод записи периода дат, принимающий строковое значение
+        /// периода. В методе происходит запись значения в куки
+        /// для дальнейшего использования.
+        /// </summary>
+        /// <param name="period"></param>
+        /// <returns></returns>
         public IActionResult DateMethod(string period)
         {
             var cookieOptions = new CookieOptions
@@ -208,6 +256,13 @@ namespace FinalProject_Web.Controllers
             return RedirectToAction("DekstopWindow", "Web");
         }
 
+        /// <summary>
+        /// Метод определения диапазона дат, принимающий в себя начальную дату
+        /// и конечную дату. Полученные даты записываются в куки.
+        /// </summary>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult DateSelect(DateTime startDate, DateTime endDate)
         {

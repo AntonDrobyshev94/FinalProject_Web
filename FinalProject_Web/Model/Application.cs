@@ -1,6 +1,4 @@
-﻿using static System.Net.Mime.MediaTypeNames;
-
-namespace FinalProject_Web.Model
+﻿namespace FinalProject_Web.Model
 {
     public class Application
     {

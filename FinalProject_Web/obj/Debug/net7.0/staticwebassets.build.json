@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "xhDYc8zS+lZQQ2cFZRTvdNS32K9Wyvf1YDSZE9K902k=",
+  "Hash": "yBn6siDC3mXIit09M8eXHXbiFRMSc8grZMboSK0mYSc=",
   "Source": "FinalProject_Web",
   "BasePath": "_content/FinalProject_Web",
   "Mode": "Default",
@@ -238,12 +238,12 @@
       "OriginalItemSpec": "wwwroot\\img\\editButton.png"
     },
     {
-      "Identity": "F:\\C#\\FinalProject_Web\\FinalProject_Web\\wwwroot\\img\\ip114j20.wcj.jpg",
+      "Identity": "F:\\C#\\FinalProject_Web\\FinalProject_Web\\wwwroot\\img\\muf33q5y.a1m.png",
       "SourceId": "FinalProject_Web",
       "SourceType": "Discovered",
       "ContentRoot": "F:\\C#\\FinalProject_Web\\FinalProject_Web\\wwwroot\\",
       "BasePath": "_content/FinalProject_Web",
-      "RelativePath": "img/ip114j20.wcj.jpg",
+      "RelativePath": "img/muf33q5y.a1m.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -252,7 +252,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\img\\ip114j20.wcj.jpg"
+      "OriginalItemSpec": "wwwroot\\img\\muf33q5y.a1m.png"
     },
     {
       "Identity": "F:\\C#\\FinalProject_Web\\FinalProject_Web\\wwwroot\\img\\otpravit_zayavku.png",
@@ -287,23 +287,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\vivid-blurred-colorful-background.jpg"
-    },
-    {
-      "Identity": "F:\\C#\\FinalProject_Web\\FinalProject_Web\\wwwroot\\img\\Карта.bmp",
-      "SourceId": "FinalProject_Web",
-      "SourceType": "Discovered",
-      "ContentRoot": "F:\\C#\\FinalProject_Web\\FinalProject_Web\\wwwroot\\",
-      "BasePath": "_content/FinalProject_Web",
-      "RelativePath": "img/Карта.bmp",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\img\\Карта.bmp"
     },
     {
       "Identity": "F:\\C#\\FinalProject_Web\\FinalProject_Web\\wwwroot\\js\\scripts.js",

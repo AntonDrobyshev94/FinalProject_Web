@@ -40,7 +40,7 @@ namespace FinalProject_Web.Data
         /// Http-контекст, который позволяет обратиться к куки,
         /// в которых хранится токен. Запрос является невозвратным.
         /// </summary>
-        /// <param name="contact"></param>
+        /// <param name="application"></param>
         /// <param name="httpContext"></param>
         public void AddApplication(Application application, HttpContext httpContext)
         {
@@ -79,6 +79,10 @@ namespace FinalProject_Web.Data
         /// </summary>
         /// <param name="status"></param>
         /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="eMail"></param>
+        /// <param name="message"></param>
+        /// <param name="date"></param>
         /// <param name="httpContext"></param>
         public void ChangeApplicationStatus(string status, int id, string name,
             string eMail, string message, DateTime date, HttpContext httpContext)
@@ -649,8 +653,15 @@ namespace FinalProject_Web.Data
         public IEnumerable<TagModel> GetTags()
         {
             string url = @"https://localhost:7037/api/values/GetTags";
-            string json = httpClient.GetStringAsync(url).Result;
-            return JsonConvert.DeserializeObject<IEnumerable<TagModel>>(json);
+            try
+            {
+                string json = httpClient.GetStringAsync(url).Result;
+                return JsonConvert.DeserializeObject<IEnumerable<TagModel>>(json);
+            }
+            catch
+            {
+                return new List<TagModel>();
+            }
         }
 
         /// <summary>
