@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "yBn6siDC3mXIit09M8eXHXbiFRMSc8grZMboSK0mYSc=",
+  "Hash": "bTqprwjZ1/iqvNjWOviCoDIKIxPq7tSG8Fp16UiMUnU=",
   "Source": "FinalProject_Web",
   "BasePath": "_content/FinalProject_Web",
   "Mode": "Default",
@@ -236,23 +236,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\editButton.png"
-    },
-    {
-      "Identity": "F:\\C#\\FinalProject_Web\\FinalProject_Web\\wwwroot\\img\\muf33q5y.a1m.png",
-      "SourceId": "FinalProject_Web",
-      "SourceType": "Discovered",
-      "ContentRoot": "F:\\C#\\FinalProject_Web\\FinalProject_Web\\wwwroot\\",
-      "BasePath": "_content/FinalProject_Web",
-      "RelativePath": "img/muf33q5y.a1m.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\img\\muf33q5y.a1m.png"
     },
     {
       "Identity": "F:\\C#\\FinalProject_Web\\FinalProject_Web\\wwwroot\\img\\otpravit_zayavku.png",

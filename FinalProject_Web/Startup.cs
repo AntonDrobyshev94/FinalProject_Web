@@ -1,8 +1,6 @@
 ﻿using FinalProject_Web.AuthFinalProjectApp;
-using FinalProject_Web.ContextFolder;
 using FinalProject_Web.Data;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using FinalProject_Web.Interfaces;
 
 namespace FinalProject_Web
@@ -23,8 +21,6 @@ namespace FinalProject_Web
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(options => options.UseSqlServer(
-                Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<IApplicationData, ApplicationDataApi>();
 
             services.AddControllers();
@@ -33,7 +29,6 @@ namespace FinalProject_Web
             #region //
 
             services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<DataContext>()
                 .AddDefaultTokenProviders().AddRoles<IdentityRole>();
 
             #endregion

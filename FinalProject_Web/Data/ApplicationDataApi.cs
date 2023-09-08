@@ -756,7 +756,6 @@ namespace FinalProject_Web.Data
                 string json = r.Content.ReadAsStringAsync().Result;
                 var tokenResponse = JsonConvert.DeserializeObject<TokenResponseModel>(json);
                 string tokenAuth = tokenResponse.access_token;
-
                 token = tokenAuth;
             }
             else

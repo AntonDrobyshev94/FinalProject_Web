@@ -1,16 +1,7 @@
-﻿using FinalProject_Web.AuthFinalProjectApp;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Mvc;
 using FinalProject_Web.Model;
-using FinalProject_Web.Extensions;
 using FinalProject_Web.Vars;
-using System.Linq.Expressions;
-using Microsoft.AspNetCore.Http;
 using FinalProject_Web.Interfaces;
-using System.ComponentModel.DataAnnotations;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
-using Azure;
 
 namespace FinalProject_Web.Controllers
 {

@@ -1,14 +1,5 @@
-using FinalProject_Web.AuthFinalProjectApp;
 using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Authentication.Negotiate;
-using System.Text.Json;
-using FinalProject_Web.Model;
-using FinalProject_Web.Extensions;
-using Newtonsoft.Json;
 using FinalProject_Web.Vars;
-using Azure;
-using FinalProject_Web.Interfaces;
-using System.Runtime.CompilerServices;
 using FinalProject_Web.Data;
 
 namespace FinalProject_Web
