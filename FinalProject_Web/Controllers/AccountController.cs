@@ -206,6 +206,7 @@ namespace FinalProject_Web.Controllers
             Response.Cookies.Append("AuthToken", string.Empty, cookieOptions);
             Response.Cookies.Append("RoleCookie", string.Empty, cookieOptions);
             Response.Cookies.Append("UserNameCookie", string.Empty, cookieOptions);
+            Response.Cookies.Append("IsEditMode", string.Empty, cookieOptions);
         }
 
         public void SetVariables()

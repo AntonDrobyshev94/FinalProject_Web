@@ -230,7 +230,7 @@
 .block-common-header {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
     margin-bottom: 5px;
     margin-left:10px;
@@ -239,6 +239,7 @@
 .block-header-logo {
     display: flex;
     padding-left:50px;
+    padding-top :70px;
 }
 
 .block-header-title {
