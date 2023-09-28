@@ -15,7 +15,7 @@
     position: relative;
     overflow-x: hidden;
     display: flex;
-    background-image: url('../img/vivid-blurred-colorful-background.jpg');
+    background-image: url('../img/Background.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -32,7 +32,7 @@
 }
 
 .header-wrap {
-    background-image: url('../img/cad-header-background-2.jpg');
+    background-image: url('../img/header.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

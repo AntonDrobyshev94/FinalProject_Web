@@ -1,5 +1,5 @@
 ﻿.header-wrapper {
-    background-image: url('../img/cad-header-background-2.jpg');
+    background-image: url('../img/header.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment:fixed;
@@ -9,7 +9,7 @@
 }
 
 .header-wrap-admin {
-    background-image: url('../img/cad-header-background-2.jpg');
+    background-image: url('../img/header.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     position: fixed;
